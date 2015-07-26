@@ -43,20 +43,13 @@ public class Market : MonoBehaviour {
 
 		if(currentFreeCarts == maxFreeCarts){
 			//perdeu
-			StartCoroutine(gameover());
-
-		}
-	}
-	IEnumerator gameover(){
+			Time.timeScale = 0f;
 			panelFired.SetActive(true);
 			textPoints.text = "Points: " + Player.Instance.points;
 			int record = Mathf.Max(Player.Instance.points,PlayerPrefs.GetInt("Record"));
 			PlayerPrefs.SetInt("Record",record);
 			textRecord.text = "Record: "+record;
-			yield return new WaitForSeconds(2.0f);
-			Time.timeScale = 0f;
-
-
+		}
 	}
 
 	IEnumerator CreateCarCoroutine(){

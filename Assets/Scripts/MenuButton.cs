@@ -19,4 +19,7 @@ public class MenuButton : MonoBehaviour {
 	public void inMenu() {
 		Application.LoadLevel("menu");
 	}
+	public void inCutscene() {
+		Application.LoadLevel("cutscene");
+	}
 }

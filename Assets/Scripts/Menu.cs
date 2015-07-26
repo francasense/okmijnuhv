@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour {
 
 		sound.SetActive(false);
 		soundSad.SetActive(true);
-		StartCoroutine(callMenu());
+		StartCoroutine(callGame());
 		StartCoroutine(callSound());
 
 
@@ -19,10 +19,17 @@ public class Menu : MonoBehaviour {
 
 
 	IEnumerator callMenu() {
-		yield return new WaitForSeconds(60f);
-		Application.LoadLevel("menu");
+		yield return new WaitForSeconds(50f);
+		//Application.LoadLevel("menu");
 
 
+	}
+
+	IEnumerator callGame() {
+		yield return new WaitForSeconds(50f);
+		Application.LoadLevel("Game");
+		
+		
 	}
 
 	IEnumerator callSound() {
