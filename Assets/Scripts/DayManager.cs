@@ -16,7 +16,7 @@ public class DayManager : MonoBehaviour {
 		carsOnScene = GameObject.FindGameObjectsWithTag ("Vehicle").Length;
 
 		//Chama o Proximo dia quando dia tiver acabado e nao restar nenhum carro.
-		if (dayflag && carsOnScene <= 0) {
+		if (dayflag /*&& carsOnScene <= 0*/) {
 			StartCoroutine(DayCountCoroutine());
 			dayflag = false;
 		}
@@ -28,18 +28,19 @@ public class DayManager : MonoBehaviour {
 
 		GameObject.Find ("Directional light").GetComponent<Animator> ().SetBool("Sun", true);
 			DayStart();
-			yield return new WaitForSeconds(dayLength);
-			//GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep = 99999;
-			GameObject.Find ("Vehicles").GetComponent<VehicleManager> ().vehicleflag = false;
-			dayflag = true;
+			yield return new WaitForSeconds(dayLength/2);
 		GameObject.Find ("Directional light").GetComponent<Animator> ().SetBool("Sun", false);
+			yield return new WaitForSeconds(dayLength/2);
+			//GameObject.Find ("Vehicles").GetComponent<VehicleManager> ().vehicleflag = false;
+			dayflag = true;
+
 	}
 
 	//Inicia o Dia definindo a Flag de Veiculos para Ligado e Atualizando UI.                                                                                   //0.3f
 	void DayStart(){
 		GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep = GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep - 0.8f;
 
-		GameObject.Find ("Vehicles").GetComponent<VehicleManager> ().CoroutineRecaller = true;
+		//GameObject.Find ("Vehicles").GetComponent<VehicleManager> ().CoroutineRecaller = true;
 		GameObject.Find("DayCount").GetComponent<DayUI>().day = GameObject.Find("DayCount").GetComponent<DayUI>().day + 1;
 		GameObject.Find("DayCount").GetComponent<DayUI>().att = true;
 	}
