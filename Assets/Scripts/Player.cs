@@ -9,6 +9,10 @@ public class Player : MonoBehaviour, ICartHandler {
 	public float speed;
 	public float turnSpeed = 100;
 	public float stopDistance = 0.5f;
+	public DodWalk dodWalk;
+	public GameObject pau;
+	public GameObject targetpau;
+
 	
 	[HideInInspector]
 	public Vector3 destination;
@@ -24,6 +28,9 @@ public class Player : MonoBehaviour, ICartHandler {
 	
 	void Start () {
 		//speed = 10;
+		targetpau.SetActive(false);
+		pau.SetActive(false);
+
 		Time.timeScale = 1f;
 		points = 0;
 		destination = this.transform.position;
@@ -96,4 +103,17 @@ public class Player : MonoBehaviour, ICartHandler {
 		GerenciarExtras.Instance.super.SetActive(false);
 		
 	}
+	void OnTriggerEnter(Collider theCollision)
+	{
+
+		if (theCollision.tag == "pau"){
+			targetpau.SetActive(true);
+			dodWalk.pau = true;
+			Destroy(theCollision.gameObject);
+			pau.SetActive(true);
+
+		}
+		
+	}
+
 }

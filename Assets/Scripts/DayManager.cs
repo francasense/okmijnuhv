@@ -2,16 +2,24 @@
 using System.Collections;
 
 public class DayManager : MonoBehaviour {
+
+	private static DayManager instance;
+	public static DayManager Instance{get{return instance == null ? instance = FindObjectOfType<DayManager>() : instance;}}
+
 	public bool dayflag;
 	public int carsOnScene;
 	public float dayLength = 15f;
-	void Start () {
 
-		dayflag = true;
+	void Start () {
+	
+
 
 	}
-	
+
+
+
 	void Update(){
+
 		//Verifica carros na Cena.
 		carsOnScene = GameObject.FindGameObjectsWithTag ("Vehicle").Length;
 
@@ -38,7 +46,7 @@ public class DayManager : MonoBehaviour {
 
 	//Inicia o Dia definindo a Flag de Veiculos para Ligado e Atualizando UI.                                                                                   //0.3f
 	void DayStart(){
-		GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep = GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep - 0.8f;
+		GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep = GameObject.Find("Vehicles").GetComponent<VehicleManager>().currentTimeStep - 1.2f;
 
 		//GameObject.Find ("Vehicles").GetComponent<VehicleManager> ().CoroutineRecaller = true;
 		GameObject.Find("DayCount").GetComponent<DayUI>().day = GameObject.Find("DayCount").GetComponent<DayUI>().day + 1;

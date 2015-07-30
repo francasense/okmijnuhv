@@ -18,15 +18,15 @@ public class Menu : MonoBehaviour {
 	}
 
 
-	IEnumerator callMenu() {
-		yield return new WaitForSeconds(50f);
+	//IEnumerator callMenu() {
+		//yield return new WaitForSeconds(45f);
 		//Application.LoadLevel("menu");
 
 
-	}
+	//}
 
 	IEnumerator callGame() {
-		yield return new WaitForSeconds(50f);
+		yield return new WaitForSeconds(45f);
 		Application.LoadLevel("Game");
 		
 		

@@ -6,31 +6,53 @@ public class Market : MonoBehaviour {
 
 	private static Market instance;
 	public static Market Instance{get{return instance == null ? instance = FindObjectOfType<Market>() : instance;}}
-
 	public List<Transform> exits;
-
 	public Cart cartPrefab;
-
 	public float startTimeStep = 5f;
 	public float endTimeStep = 1f;
 	public float totalTime = 60f;//1min
 	float currentTimeStep;
-
+	private int firstTime = 0;
 	public float minCartSpeed = 1f;
 	public float maxCartSpeed = 5f;
-
 	public int maxFreeCarts = 20;
 	public int currentFreeCarts = 0;
-
 	public RectTransform lifeBarContent;
 	public GameObject panelFired;
 	public UnityEngine.UI.Text textPoints;
 	public UnityEngine.UI.Text textRecord;
+	public GameObject panelTurtorial;
 
 	void Start () {
+
+		int teste = PlayerPrefs.GetInt("chave");
+		PlayerPrefs.SetInt("chave",teste);
+		PlayerPrefs.SetInt("chave",0);
+
+		Debug.Log(PlayerPrefs.GetInt("chave"));
+	//	maisUm++;
+
 		currentTimeStep = startTimeStep;
-		//StartCoroutine(CreateCarCoroutine());
+
+		if (PlayerPrefs.GetInt("chave") == 0){
+			Debug.Log(PlayerPrefs.GetInt("chave"));
+			panelTurtorial.SetActive(true);
+		}
+
+
 	}
+
+	public void fecharPanelTurtorial(){
+		panelTurtorial.SetActive(false);
+		PlayerPrefs.SetInt("chave", 1); 
+
+		DayManager.Instance.dayflag = true;
+		Debug.Log(PlayerPrefs.GetInt("chave"));
+
+
+
+	}
+
 
 	void Update () {
 		currentTimeStep = Mathf.MoveTowards(
