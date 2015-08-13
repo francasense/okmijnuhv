@@ -6,18 +6,12 @@ public class Helper : MonoBehaviour, ICartHandler {
 	
 	private static Helper instance;
 	public static Helper Instance{get{return instance == null ? instance = FindObjectOfType<Helper>() : instance;}}
-	
 	public Cart cart;
-	
 	private GameObject deposito;
 	public GameObject ajudanteSimples;
-	
 	public Cart currentCart {get;set;}
-	
 	public Character1 character;
-
 	public bool endService = false;
-
 	public GameObject[] carts;
 	
 	void Start () {
@@ -29,15 +23,11 @@ public class Helper : MonoBehaviour, ICartHandler {
 		character.walk = true;
 		character.cart = false;
 	}
-
 	IEnumerator destroi(float time){
 
 		yield return new WaitForSeconds (time);
 			destruir();
-
 	}
-
-
 	void destruir(){
 
 		//Debug.Log("destruir");
@@ -52,14 +42,11 @@ public class Helper : MonoBehaviour, ICartHandler {
 		}
 
 	}
-	
 	void Update(){
 		UpdateDestination();
 		
 		character.cart = currentCart != null;
-		
 	}
-	
 	//ATUALIZA O STATUS DELE DE BUSCANDO PARA ESPERANDO E ENTREGANDO.
 	void UpdateDestination(){
 		if (character.cart == false && HasCart () == true) {
@@ -82,7 +69,6 @@ public class Helper : MonoBehaviour, ICartHandler {
 			this.character.walk = true;
 		}
 	}
-	
 	//EXECUTA BUSCA PELO CARRINHO MAIS PROXIMO
 	public GameObject SeekCart(){
 		
@@ -102,10 +88,7 @@ public class Helper : MonoBehaviour, ICartHandler {
 				}
 			}
 		}
-		
 		return proximo;
-		
-		
 	}
 	
 	//VERIFICA EXISTENCIA DE CARRINHOS DISPONIVEIS
@@ -120,9 +103,6 @@ public class Helper : MonoBehaviour, ICartHandler {
 			return true;
 		} else
 			return false;
-		
 	}
-	
-	
-	
+
 }
