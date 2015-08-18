@@ -59,8 +59,8 @@ public class Helper : MonoBehaviour, ICartHandler {
 			this.character.walk = false;
 			if (endService) {
 				this.character.walk = true;
-				this.GetComponent<NavMeshAgent> ().destination = GameObject.Find ("SpawMather").transform.position;
-				if( Vector3.Distance(this.transform.position, GameObject.Find ("SpawMather").transform.position) < 1)
+				this.GetComponent<NavMeshAgent> ().destination = GameObject.Find ("SpawnMother").transform.position;
+				if( Vector3.Distance(this.transform.position, GameObject.Find ("SpawnMother").transform.position) < 1)
 					Destroy(this.gameObject);
 			}
 		} else if (character.cart == true) {

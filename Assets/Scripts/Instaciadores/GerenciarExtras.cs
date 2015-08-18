@@ -20,8 +20,8 @@ public class GerenciarExtras : MonoBehaviour {
 	public GameObject diamante2;
 	public float tempoCachorro;
 
-	public GameObject cachorro;
-	public GameObject pau;
+	//public GameObject cachorro;
+	//public GameObject pau;
 
 	public Player player;
 	int point =0;
@@ -34,9 +34,9 @@ public class GerenciarExtras : MonoBehaviour {
 	private int valorPeriodo=0;
 
 	void Start () {
-		StartCoroutine(cachorrocorrotina());
-		pau.SetActive(false);
-		cachorro.SetActive(false);
+//		StartCoroutine(cachorrocorrotina());
+//		pau.SetActive(false);
+//		cachorro.SetActive(false);
 		diamante.SetActive(false);
 		diamante2.SetActive(false);
 
@@ -117,13 +117,13 @@ public class GerenciarExtras : MonoBehaviour {
 
 	}
 
-	IEnumerator cachorrocorrotina(){
-			yield return new WaitForSeconds(tempoCachorro);
-		cachorro.SetActive(true);
-		pau.SetActive(true);
-
-
-	}
+//	IEnumerator cachorrocorrotina(){
+//			yield return new WaitForSeconds(tempoCachorro);
+//		cachorro.SetActive(true);
+//		pau.SetActive(true);
+//
+//
+//	}
 	
 
 

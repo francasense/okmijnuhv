@@ -18,7 +18,7 @@ public class Mather : MonoBehaviour {
 	//}
 	
 	public IEnumerator animaMather(){
-		yield return new WaitForSeconds (Random.Range(60, 100));
+		//yield return new WaitForSeconds (3);
 		//yield return new WaitForSeconds (2.45f);
 		
 		Matherbaby.SetBool("Andar", true);
