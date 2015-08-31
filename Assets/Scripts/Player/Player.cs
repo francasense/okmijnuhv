@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, ICartHandler {
 	public DodWalk dodWalk;
 	public GameObject pau;
 	public GameObject targetpau;
+	public float inicio = 0f;
 
 	
 	[HideInInspector]
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour, ICartHandler {
 		targetpau.SetActive(false);
 		pau.SetActive(false);
 
-		Time.timeScale = 1f;
+		//Time.timeScale = 1f;
 		points = 0;
 		destination = this.transform.position;
 		
@@ -39,7 +40,8 @@ public class Player : MonoBehaviour, ICartHandler {
 	}
 	
 	void Update(){
-		
+		Time.timeScale = inicio;
+
 		//destination preenchido pelo mouse ou touch
 		
 		//if(currentCart != null && Input.GetKeyDown(KeyCode.Z))currentCart.DetachFrom();
@@ -86,7 +88,11 @@ public class Player : MonoBehaviour, ICartHandler {
 		Time.timeScale = 1f;
 		Application.LoadLevel(Application.loadedLevel);
 	}
-	
+
+	public void IniciarLevel(){
+		inicio = 1f;
+		//Application.LoadLevel(Application.loadedLevel);
+	}
 	
 	public void SuperSpeed(int teste)
 	{

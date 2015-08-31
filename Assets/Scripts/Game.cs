@@ -51,7 +51,7 @@ public class Game : MonoBehaviour {
 			StartCoroutine("Day7");
 			break;
 		default:
-			StartCoroutine("Day1");
+			//StartCoroutine("Day1");
 			break;
 		}
 		

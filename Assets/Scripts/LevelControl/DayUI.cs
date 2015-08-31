@@ -12,7 +12,7 @@ public class DayUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		//day = 3;
 	}
 	
 	// Update is called once per frame

@@ -8,37 +8,41 @@ public class Market : MonoBehaviour {
 	public static Market Instance{get{return instance == null ? instance = FindObjectOfType<Market>() : instance;}}
 	public List<Transform> exits;
 	public Cart cartPrefab;
-	public float startTimeStep = 5f;
-	public float endTimeStep = 1f;
-	public float totalTime = 60f;//1min
-	float currentTimeStep;
+//	public float startTimeStep = 50f;
+//	public float endTimeStep = 40;
+//	public float totalTime = 120f;//1min
+//	float currentTimeStep;
 	private int firstTime = 0;
 	public float minCartSpeed = 1f;
 	public float maxCartSpeed = 5f;
-	public int maxFreeCarts = 20;
+	public int maxFreeCarts;
 	public int currentFreeCarts = 0;
 	public RectTransform lifeBarContent;
 	public GameObject panelFired;
 	public UnityEngine.UI.Text textPoints;
 	public UnityEngine.UI.Text textRecord;
 	public GameObject panelTurtorial;
+	public GameObject panelEndLevel;
+	public bool endLevel;
+	public bool LevelCompleted;
+	public int pointsperLevel;
 
 	void Start () {
-
+		StartCoroutine(CreateCarCoroutine());
+		LevelCompleted = false;
+		endLevel = false;
 		int teste = PlayerPrefs.GetInt("chave");
 		PlayerPrefs.SetInt("chave",teste);
 		PlayerPrefs.SetInt("chave",0);
-
 		Debug.Log(PlayerPrefs.GetInt("chave"));
 	//	maisUm++;
 
-		currentTimeStep = startTimeStep;
+		//currentTimeStep = startTimeStep;
 
 		if (PlayerPrefs.GetInt("chave") == 0){
 			Debug.Log(PlayerPrefs.GetInt("chave"));
 			panelTurtorial.SetActive(true);
 		}
-
 
 	}
 
@@ -53,11 +57,20 @@ public class Market : MonoBehaviour {
 
 	}
 
+	public void LevelFinish(float numero){
+		StartCoroutine(LevelFinishEnumertor(numero));
+		Debug.Log("levelfinish"+numero);
+	}
+	IEnumerator LevelFinishEnumertor(float timelevelfinish){
+		yield return new WaitForSeconds(timelevelfinish);
+		LevelCompleted = true;
+	}
+
 
 	void Update () {
-		currentTimeStep = Mathf.MoveTowards(
-			currentTimeStep, endTimeStep, 
-			Time.deltaTime/(totalTime/Mathf.Abs(endTimeStep-startTimeStep)));
+	//	currentTimeStep = Mathf.MoveTowards(
+		//	currentTimeStep, endTimeStep, 
+		//	Time.deltaTime/(totalTime/Mathf.Abs(endTimeStep-startTimeStep)));
 
 		var sd = lifeBarContent.sizeDelta;
 		sd.x = (lifeBarContent.parent as RectTransform).rect.width * ((float)currentFreeCarts/maxFreeCarts);
@@ -71,15 +84,34 @@ public class Market : MonoBehaviour {
 			int record = Mathf.Max(Player.Instance.points,PlayerPrefs.GetInt("Record"));
 			PlayerPrefs.SetInt("Record",record);
 			textRecord.text = "Record: "+record;
+			
 		}
+				
+
+		if(Player.Instance.points>20 || LevelCompleted){
+			Debug.Log("fim");
+			panelEndLevel.SetActive(true);
+			Player.Instance.inicio = 0f;
+			textPoints.text = "Points: " + Player.Instance.points;
+			int record = Mathf.Max(Player.Instance.points,PlayerPrefs.GetInt("Record"));
+			PlayerPrefs.SetInt("Record",record);
+			textRecord.text = "Record: "+record;
+		}
+
 	}
 
 	IEnumerator CreateCarCoroutine(){
-		while(true){
-			yield return new WaitForSeconds(currentTimeStep);
-			Transform exit = exits[Random.Range(0,exits.Count)];
-			Cart newCart = (Cart)Instantiate(cartPrefab, exit.position, exit.rotation);
-			newCart.GetComponent<Rigidbody>().velocity = newCart.transform.forward * Random.Range(minCartSpeed,maxCartSpeed);
-		}
+		yield return new WaitForSeconds(0.2f);
+
+		maxFreeCarts = LevelControl.Instance.LifeBar;
+		pointsperLevel = LevelControl.Instance.pointsperLevel;
+
+		//while(true){
+
+			//yield return new WaitForSeconds(currentTimeStep);
+			//Transform exit = exits[Random.Range(0,exits.Count)];
+			//Cart newCart = (Cart)Instantiate(cartPrefab, exit.position, exit.rotation);
+			//newCart.GetComponent<Rigidbody>().velocity = newCart.transform.forward * Random.Range(minCartSpeed,maxCartSpeed);
+		//}
 	}
 }

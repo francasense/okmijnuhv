@@ -3,8 +3,12 @@ using System.Collections;
 
 public class MenuButton : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
+
+		//int teste = PlayerPrefs.GetInt("level");
+		//PlayerPrefs.SetInt("level",teste);
 	
 	}
 	
@@ -12,7 +16,6 @@ public class MenuButton : MonoBehaviour {
 	void Update () {
 	
 	}
-
 	public void inGame() {
 		Application.LoadLevel("Game");
 	}
@@ -21,5 +24,16 @@ public class MenuButton : MonoBehaviour {
 	}
 	public void inCutscene() {
 		Application.LoadLevel("cutscene");
+	}
+	public void menu_level() {
+		Application.LoadLevel("menu_level");
+	}
+	public void creditos() {
+		Application.LoadLevel("creditos");
+	}
+
+	public void inGameLevel1() {
+		PlayerPrefs.SetInt("level",1);
+		Application.LoadLevel("Game");
 	}
 }

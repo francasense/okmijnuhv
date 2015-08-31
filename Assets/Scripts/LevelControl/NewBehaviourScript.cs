@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnMother : MonoBehaviour {
-	public GameObject Mother;
+public class NewBehaviourScript : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
 	
@@ -11,11 +11,5 @@ public class SpawnMother : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	public void Spawn(){
-		Debug.Log ("Mae");
-		Instantiate (Mother);
-
 	}
 }
