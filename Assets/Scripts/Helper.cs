@@ -7,18 +7,20 @@ public class Helper : MonoBehaviour, ICartHandler {
 	private static Helper instance;
 	public static Helper Instance{get{return instance == null ? instance = FindObjectOfType<Helper>() : instance;}}
 	public Cart cart;
-	private GameObject deposito;
+	private GameObject deposito1;
+	private GameObject deposito2;
 	public GameObject ajudanteSimples;
 	public Cart currentCart {get;set;}
 	public Character1 character;
 	public bool endService = false;
 	public GameObject[] carts;
+	public GameObject[] depo;
 	
 	void Start () {
 		StartCoroutine(destroi(25f));
 
-		deposito = GameObject.Find ("DeployZone");
-		
+		deposito1 = GameObject.Find ("DeployZone1");
+		deposito2 = GameObject.Find ("DeployZone2");
 		
 		character.walk = true;
 		character.cart = false;
@@ -49,7 +51,7 @@ public class Helper : MonoBehaviour, ICartHandler {
 	}
 	//ATUALIZA O STATUS DELE DE BUSCANDO PARA ESPERANDO E ENTREGANDO.
 	void UpdateDestination(){
-		if (character.cart == false && HasCart () == true) {
+		if (character.cart == false && HasCart () == true && endService == false) {
 			//busca um carrinho
 			this.GetComponent<NavMeshAgent> ().destination = SeekCart ().transform.position;
 			this.character.walk = true;
@@ -65,7 +67,7 @@ public class Helper : MonoBehaviour, ICartHandler {
 			}
 		} else if (character.cart == true) {
 			//entrega o carrinho
-			this.GetComponent<NavMeshAgent> ().destination = deposito.transform.position;
+			this.GetComponent<NavMeshAgent> ().destination = SeekDeposito ().transform.position;
 			this.character.walk = true;
 		}
 	}
@@ -90,7 +92,29 @@ public class Helper : MonoBehaviour, ICartHandler {
 		}
 		return proximo;
 	}
-	
+
+	//BUSCA DEPOSITO MAIS PROXIMO DISPONIVEL
+	public GameObject SeekDeposito(){
+		
+		GameObject proximo = null;
+		float minDist = Mathf.Infinity;
+		Vector3 currentPos = transform.position;
+		depo = GameObject.FindGameObjectsWithTag ("Deposito");
+		
+		
+		foreach (GameObject t in depo) {
+			if(t.GetComponent<DeployZone>().Manutencao == false && t.GetComponent<DeployZone>().Quantidade <= 3){
+				float dist = Vector3.Distance(t.transform.position, currentPos);
+				if (dist < minDist)
+				{
+					proximo = t;
+					minDist = dist;
+				}
+			}
+		}
+		return proximo;
+	}
+
 	//VERIFICA EXISTENCIA DE CARRINHOS DISPONIVEIS
 	public bool HasCart(){
 		int n = 0;

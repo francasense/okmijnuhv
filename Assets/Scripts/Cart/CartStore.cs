@@ -15,6 +15,8 @@ public class CartStore : MonoBehaviour {
 	public GameObject[] buttons;
 	public GerenciarExtras gerenciarExtras;
 	public int contador = 0;
+	public int quantidade;
+
 
 	
 	// Use this for initialization
@@ -34,6 +36,7 @@ public class CartStore : MonoBehaviour {
 			cart.GetComponent<Rigidbody>().velocity = marker.forward * speed;
 			cart.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 		}
+		gameObject.GetComponentInChildren<DeployZone>().Quantidade = carts.Count;
 	}
 	
 	public void OnTriggerEnterStair(Collider col){
