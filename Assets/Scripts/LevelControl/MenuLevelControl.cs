@@ -6,6 +6,9 @@ public class MenuLevelControl : MonoBehaviour {
 		public GameObject btlevel2;
 		public GameObject btlevel3;
 		public GameObject btlevel4;
+	public GameObject btlevel5;
+	public GameObject btlevel6;
+	public GameObject btlevel7;
 		/*
 	public GameObject btlevel5;
 	public GameObject btlevel6;
@@ -19,9 +22,15 @@ public class MenuLevelControl : MonoBehaviour {
 		
 		// Use this for initialization
 		void Start () {
-			btlevel2.SetActive(true);
-			btlevel3.SetActive(true);
-			btlevel4.SetActive(true);
+//			btlevel2.SetActive(true);
+//			btlevel3.SetActive(true);
+//			btlevel4.SetActive(true);
+//		btlevel5.SetActive(true);
+
+//		btlevel6.SetActive(true);
+
+		//btlevel7.SetActive(true);
+
 			/*
 		btlevel5.SetActive(true);
 		btlevel6.SetActive(true);
@@ -33,7 +42,7 @@ public class MenuLevelControl : MonoBehaviour {
 		btlevel12.SetActive(true);
 		*/
 			
-			openLevel();
+	//		openLevel();
 			
 		}
 		

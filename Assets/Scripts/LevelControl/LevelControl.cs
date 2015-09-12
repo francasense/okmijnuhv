@@ -88,33 +88,31 @@ public class LevelControl : MonoBehaviour {
 		switch (qualLevel)
 		{
 		case 1:
-			cachecolFase = true;
-			neve.SetActive(true);
-			cachecol.SetActive(true);
 			StartCoroutine(Day1());
-		
-
 			break;
-
 		case 2:
-			capa.SetActive(true);
-			chuva.SetActive(true);
-			chovendoFase = true;
-
 			StartCoroutine(Day2());
 			//level02 = false;
 			break;
 		case 3:
 			StartCoroutine(Day3());
+			capa.SetActive(true);
+			chuva.SetActive(true);
+			chovendoFase = true;
 			//level03 = false;
 			break;
 		case 4:
+			cachecolFase = true;
+			neve.SetActive(true);
+			cachecol.SetActive(true);
 			StartCoroutine(Day4());
+
 			break;
 		case 5:
 			StartCoroutine(Day5());
 			break;
 		case 6:
+
 			StartCoroutine(Day6());
 			break;
 		case 7:
@@ -158,8 +156,8 @@ public class LevelControl : MonoBehaviour {
 		dayTime1 = 80f;// quanto tempo vai passar de dia 
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
-		startTimeStep = 14f; //define a quantidade de carrinhos por segundos no inicio do turno
-		endTimeStep = 5f; //define a quantidade de carrinhos por segundo no final do dia
+		startTimeStep = 12f; //define a quantidade de carrinhos por segundos no inicio do turno
+		endTimeStep = 4f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 110f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
 		market.LevelFinish(120f);//quanto tempo vai durar o dia
@@ -183,8 +181,8 @@ public class LevelControl : MonoBehaviour {
 		dayTime1 = 80f;// quanto tempo vai passar de dia 
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
-		startTimeStep = 8f; //define a quantidade de carrinhos por segundos no inicio do turno
-		endTimeStep = 1f; //define a quantidade de carrinhos por segundo no final do dia
+		startTimeStep = 10f; //define a quantidade de carrinhos por segundos no inicio do turno
+		endTimeStep = 4f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 40f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
 		market.LevelFinish(120f);//quanto tempo vai durar o dia
@@ -209,7 +207,7 @@ public class LevelControl : MonoBehaviour {
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
 		startTimeStep = 8f; //define a quantidade de carrinhos por segundos no inicio do turno
-		endTimeStep = 1f; //define a quantidade de carrinhos por segundo no final do dia
+		endTimeStep = 3f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 40f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
 		market.LevelFinish(120f);//quanto tempo vai durar o dia
@@ -233,7 +231,7 @@ public class LevelControl : MonoBehaviour {
 		dayTime1 = 80f;// quanto tempo vai passar de dia 
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
-		startTimeStep = 8f; //define a quantidade de carrinhos por segundos no inicio do turno
+		startTimeStep = 6f; //define a quantidade de carrinhos por segundos no inicio do turno
 		endTimeStep = 1f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 40f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
@@ -255,7 +253,7 @@ public class LevelControl : MonoBehaviour {
 		dayTime1 = 80f;// quanto tempo vai passar de dia 
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
-		startTimeStep = 8f; //define a quantidade de carrinhos por segundos no inicio do turno
+		startTimeStep = 4f; //define a quantidade de carrinhos por segundos no inicio do turno
 		endTimeStep = 1f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 40f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
@@ -276,7 +274,7 @@ public class LevelControl : MonoBehaviour {
 		dayTime1 = 80f;// quanto tempo vai passar de dia 
 		nightTime1 = 40f;// quanto tempo vai passar de noite 
 		turtorialText.TextDay(num_dia); // texto do turtorial cada dia
-		startTimeStep = 8f; //define a quantidade de carrinhos por segundos no inicio do turno
+		startTimeStep = 3f; //define a quantidade de carrinhos por segundos no inicio do turno
 		endTimeStep = 1f; //define a quantidade de carrinhos por segundo no final do dia
 		totalTime = 40f; //quanto tempo vai durar essa transição
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
