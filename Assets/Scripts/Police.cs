@@ -13,49 +13,48 @@ public class Police : MonoBehaviour, ICartHandler {
 	public Cart currentCart {get;set;}
 	public Character1 character;
 	public bool endService = false;
-	public GameObject[] carts;
+	public GameObject[] thieves;
 	public GameObject[] depo;
+	public bool Detendo;
 	//MOVIMENTAÇAO INDEPENDENTE DE NAVMESH
 	public float speed;
 	public float turnSpeed = 100;
 	public float stopDistance = 0.5f;
 	[HideInInspector]
 	public Vector3 destination;
-
+	
 	void Start () {
-		StartCoroutine(destroi(25f));
-
-		deposito1 = GameObject.Find ("DeployZone1");
-		deposito2 = GameObject.Find ("DeployZone2");
+		//StartCoroutine(destroi(25f));
+		
 		
 		character.walk = true;
 		character.cart = false;
 	}
 	IEnumerator destroi(float time){
-
+		
 		yield return new WaitForSeconds (time);
-			destruir();
+		destruir();
 	}
 	void destruir(){
-
+		
 		//Debug.Log("destruir");
-
+		
 		if ( this.character.cart == false) {
 			Debug.Log("terminou serviço");
 			endService = true;
-
+			
 		}else
 		{
 			StartCoroutine(destroi(1f));
 		}
-
+		
 	}
 	void Update(){
 		UpdateDestination();
 		
 		character.cart = currentCart != null;
 	}
-
+	
 	//MOVIMENTAÇAO INDEPENDENTE DE NAVMESH
 	void FixedUpdate () {
 		
@@ -88,45 +87,29 @@ public class Police : MonoBehaviour, ICartHandler {
 			rb.velocity = rb.angularVelocity = Vector3.zero;
 		}
 	}
-
+	
 	//ATUALIZA O STATUS DELE DE BUSCANDO PARA ESPERANDO E ENTREGANDO(DEPENDENTE DE NAVMESH).
 	void UpdateDestination(){
-		if (character.cart == false && HasCart () == true && endService == false) {
-			//busca um carrinho
-			//this.GetComponent<NavMeshAgent> ().destination = SeekCart ().transform.position;
-			//this.character.walk = true;
-			this.destination = SeekCart ().transform.position;
-		} else if (character.cart == false && HasCart () == false) {
-			//espera um carrinho
-			//this.GetComponent<NavMeshAgent> ().destination = this.transform.position;
-			//this.character.walk = false;
+		if (this.Detendo == false && HasThief () == true) {
+			//Aborda um Ladrao
+			this.destination = SeekThief ().transform.position;
+		} else if (this.Detendo == false && HasThief () == false) {
+			//Espera um Ladrao
 			this.destination = this.transform.position;
-			if (endService) {
-				//this.character.walk = true;
-				//this.GetComponent<NavMeshAgent> ().destination = GameObject.Find ("SpawnMother").transform.position;
-				this.destination = GameObject.Find ("SpawnMother").transform.position;
-				if( Vector3.Distance(this.transform.position, GameObject.Find ("SpawnMother").transform.position) < 1)
-					Destroy(this.gameObject);
-			}
-		} else if (character.cart == true) {
-			//entrega o carrinho
-			//this.GetComponent<NavMeshAgent> ().destination = SeekDeposito ().transform.position;
-			//this.character.walk = true;
-			this.destination = SeekDeposito ().transform.position;
 		}
 	}
-
+	
 	//EXECUTA BUSCA PELO CARRINHO MAIS PROXIMO
-	public GameObject SeekCart(){
+	public GameObject SeekThief(){
 		
 		GameObject proximo = null;
 		float minDist = Mathf.Infinity;
 		Vector3 currentPos = transform.position;
-		carts = GameObject.FindGameObjectsWithTag ("Cart");
+		thieves = GameObject.FindGameObjectsWithTag ("Thief");
 		
 		
-		foreach (GameObject t in carts) {
-			if(t.GetComponent<Cart>().colectable == true && t.GetComponent<Cart>().empty == true){
+		foreach (GameObject t in thieves) {
+			if(t.GetComponent<Thief>().Roubando = true){
 				float dist = Vector3.Distance(t.transform.position, currentPos);
 				if (dist < minDist)
 				{
@@ -137,35 +120,14 @@ public class Police : MonoBehaviour, ICartHandler {
 		}
 		return proximo;
 	}
-
-	//BUSCA DEPOSITO MAIS PROXIMO DISPONIVEL
-	public GameObject SeekDeposito(){
-		
-		GameObject proximo = null;
-		float minDist = Mathf.Infinity;
-		Vector3 currentPos = transform.position;
-		depo = GameObject.FindGameObjectsWithTag ("Deposito");
-		
-		
-		foreach (GameObject t in depo) {
-			if(t.GetComponent<DeployZone>().Manutencao == false && t.GetComponent<DeployZone>().Quantidade <= 3){
-				float dist = Vector3.Distance(t.transform.position, currentPos);
-				if (dist < minDist)
-				{
-					proximo = t;
-					minDist = dist;
-				}
-			}
-		}
-		return proximo;
-	}
-
+	
+	
 	//VERIFICA EXISTENCIA DE CARRINHOS DISPONIVEIS
-	public bool HasCart(){
+	public bool HasThief(){
 		int n = 0;
-		carts = GameObject.FindGameObjectsWithTag ("Cart");
-		foreach (GameObject t in carts) {
-			if(t.GetComponent<Cart>().colectable == true && t.GetComponent<Cart>().empty == true)
+		thieves = GameObject.FindGameObjectsWithTag ("Thief");
+		foreach (GameObject t in thieves) {
+			if(t.GetComponent<Thief>().Roubando == true)
 				n++;
 		}
 		if (n > 0) {
@@ -173,5 +135,5 @@ public class Police : MonoBehaviour, ICartHandler {
 		} else
 			return false;
 	}
-
+	
 }
