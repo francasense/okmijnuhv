@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Helper : MonoBehaviour, ICartHandler {
+public class Thief : MonoBehaviour, ICartHandler {
 	
 	
 	private static Helper instance;
