@@ -1,0 +1,41 @@
+Fazer:
+- carts grudarem uns nos outros reduzindo velocidade
+	vai dar mais trabalho
+	cada cart tem um CartHandler, que e quem ta segurando o Cart
+	pra implementar isso, ate um Cart pode ser um CartHandler
+	e pra colocar na maquina, deve pegar apenas o cart da frente, nunca um do meio
+- moedas pra Comprar o ajudante
+- criar a mecânica do ajudante
+	depende da questao dos carrinhos grudarem uns nos outros
+	o ajudante vai fazer isso tambem? pegar varios carrinhos?
+	ou vai pegar de 1 em 1 carrinho?
+- esquema de fases (day1, day2, day3)
+- configurações de cada day em xml
+- tentar aumentar o quanto os agents desviam uns dos outros
+- elementos de cenário (em cada day) pra ajudar/atrapalhar o jogador
+- destacar a cor do personagem mais em relaçao ao resto do cenario
+
+Fazendo:
+- input touch
+	joystick:	joystick na tela que diz a direçao do personagem
+				nao tem precisao suficiente
+				mantem o jogador focado pq tem que controlar o tempo todo
+				implementado
+	click:		jogador clica na tela pra onde quer que o personagem va
+				tem mais precisao
+				o jogador fica muito tempo sem interagir pq clica e espera
+				implementado
+	caminho:	jogador desenha caminho que o personagem vai fazer
+				mais precisao ainda
+				permite que o jogador faça trajetos complexos, planejando
+				jogador fica ainda mais tempo sem interagir esperando
+				a implementar*
+- criando ajudante para recolher os carrinhos.
+
+Feito:
+- reduzir tamanho do carrinho
+- carro entrar mais reto no estacionamento
+- reduzir o fundo do mercado para dar mais espaço e estacionamento caber na tela.
+- movimentação por click com cursor indicando posição do final do jogador.
+- restrição de proximidade do click para jogador não poder se mover para uma região muito próxima.
+- criado input manager para jogador clicar no jogador ou ajudante caso queira alterar entre eles.
