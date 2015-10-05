@@ -15,18 +15,22 @@ public class InstaciarMoedas : MonoBehaviour {
 	public float instaciandorDelay = 3f;
 	
 	private float timeMove = 0f;
-	public int valorMinimoRandom = 0, teste = 0;
+	public int valorMinimoRandom = 0;
 	
-	
+	public bool teste = true;
+	bool t=true;
 	// Use this for initialization
 	void Start () {
-		teste = 0;
+		t=true;
+		//teste = 0;
 		//InvokeRepeating ("Spawn", instanciadorTime, instaciandorDelay);
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		teste = LevelControl.Instance.primeiroDia;
+		t = teste;
 		Moved();
 
 
@@ -34,7 +38,8 @@ public class InstaciarMoedas : MonoBehaviour {
 	
 	public void Spawn(int teste)
 	{
-		if (teste==1){
+
+		if (t){
 		int index = Random.Range (valorMinimoRandom, objetos.Length);
 		Instantiate (objetos [index], transform.position, objetos [index].transform.rotation);
 		}

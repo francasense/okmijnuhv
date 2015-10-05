@@ -6,7 +6,10 @@ public class LevelControl : MonoBehaviour {
 	
 	private static LevelControl instance;
 	public static LevelControl Instance{ get{ return instance == null ? (instance = FindObjectOfType<LevelControl>()) : instance; } }
-	
+
+	public GameObject maquinaQuebrada;
+	public GameObject maquinaBoa;
+
 	public TurtorialText turtorialText;
 	public VehicleManager vehicleManager;
 	public TimeMather timeMather;
@@ -56,6 +59,8 @@ public class LevelControl : MonoBehaviour {
 	
 
 	void Start(){
+		primeiroDia = false;
+		maquinaQuebrada.SetActive(false);
 		policeCar.SetActive(false);
 		ladrao.SetActive(false);
 		carrinhosCena.SetActive(false);
@@ -204,7 +209,7 @@ public class LevelControl : MonoBehaviour {
 		if(level03){
 			openLevel = num_dia;
 		}
-		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 		// escolha um dos elementos e passe como parametro a baixo
 		StartCoroutine(instaciarExtras(1));
 	}
@@ -228,7 +233,7 @@ public class LevelControl : MonoBehaviour {
 		}
 		//elementos extras abaixo ###################################################
 		print("Dia 4");
-		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 		// escolha um dos elementos e passe como parametro a baixo
 		StartCoroutine(instaciarExtras(4));
 	}
@@ -251,7 +256,7 @@ public class LevelControl : MonoBehaviour {
 			openLevel = num_dia;
 		}
 		print("Dia 5");
-		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 		// escolha um dos elementos e passe como parametro a baixo
 		StartCoroutine(instaciarExtras(2));
 	}
@@ -274,7 +279,7 @@ public class LevelControl : MonoBehaviour {
 			openLevel = num_dia;
 		}
 		print("Dia 6");
-		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 		// escolha um dos elementos e passe como parametro a baixo
 		StartCoroutine(instaciarExtras(5));
 	}
@@ -298,7 +303,7 @@ public class LevelControl : MonoBehaviour {
 		}
 		//elementos extras abaixo ###################################################
 		yield return new WaitForSeconds(sorteado);
-		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 		// escolha um dos elementos e passe como parametro a baixo
 		StartCoroutine(instaciarExtras(3));
 	}
@@ -321,6 +326,9 @@ public class LevelControl : MonoBehaviour {
 			openLevel = num_dia;
 		}
 		print("Dia 8");
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(6));
 	}
 	
 	IEnumerator Day9() {
@@ -425,7 +433,7 @@ public class LevelControl : MonoBehaviour {
 			break;
 		}
 	}
-	// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+	// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve) - 6(maquinaQuebrada)
 	IEnumerator instaciarExtras(int extra) {
 
 		yield return null;
@@ -462,6 +470,11 @@ public class LevelControl : MonoBehaviour {
 			cachecolFase = true;
 			neve.SetActive(true);
 			cachecol.SetActive(true);
+			break;
+		case 6:
+			//chamar maquina quebrada
+			maquinaBoa.SetActive(false);
+			maquinaQuebrada.SetActive(true);
 			break;
 		}
 	}
