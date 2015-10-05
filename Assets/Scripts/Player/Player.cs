@@ -124,15 +124,12 @@ public class Player : MonoBehaviour, ICartHandler {
 	}
 
 	public void openMenu(){
-
 		menuOpen.SetActive(true);
 		inicio = 0f;
 
 	}
 	public void closeMenu(){
 		menuOpen.SetActive(false);
-		//DayManager.Instance.dayflag = true;
-
 		inicio = 1f;
 
 	}

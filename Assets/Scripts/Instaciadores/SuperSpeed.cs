@@ -19,9 +19,9 @@ public class SuperSpeed : MonoBehaviour {
 
 
 		
-		Player.Instance.speed=27;
+		Player.Instance.speed=25;
 		yield return new WaitForSeconds (4.0f);
-		Player.Instance.speed=7;
+		Player.Instance.speed=8;
 		
 	}
 

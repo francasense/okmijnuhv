@@ -24,7 +24,8 @@ public class Thief : MonoBehaviour, ICartHandler {
 	public Vector3 destination;
 
 	void Start () {
-		//StartCoroutine(destroi(25f));
+		StartCoroutine(destroiComotempo());
+		
 
 		this.viatura = GameObject.Find ("PoliceCar");
 		character.walk = true;
@@ -144,6 +145,8 @@ public class Thief : MonoBehaviour, ICartHandler {
 	public void OnCollisionEnter(Collision col){
 		if (col.gameObject.name == "PoliceCar") {
 			SoundAlarm.Instance.ativa = false;
+			//aqui
+			TimeDog.Instance.valendofalso();
 
 			Destroy(this.gameObject);
 
@@ -151,7 +154,13 @@ public class Thief : MonoBehaviour, ICartHandler {
 		if (col.gameObject.name == "Police") {
 			this.Detido = true;
 			SoundAlarm.Instance.ativa = false;
+			//aqui
+			TimeDog.Instance.valendofalso();
 
 		}
+	}
+	IEnumerator destroiComotempo(){
+		yield return new WaitForSeconds(30f);
+		Destroy(this.gameObject);
 	}
 }

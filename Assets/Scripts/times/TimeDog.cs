@@ -7,6 +7,8 @@ public class TimeDog : MonoBehaviour {
 	public static TimeDog Instance{ get{ return instance == null ? (instance = FindObjectOfType<TimeDog>()) : instance; } }
 	public GameObject texttime;
 	public GameObject timeAlert;
+	public GameObject panelAlert;
+
 	public GameObject alerta_panel;
 	public UnityEngine.UI.Text TimeM;
 	public bool valendo;
@@ -15,6 +17,7 @@ public class TimeDog : MonoBehaviour {
 	int segundos;
  
 	void Start () {
+		panelAlert.SetActive(false);
 		alerta_panel.SetActive(false);
 		texttime.SetActive(false);
 		timeAlert.SetActive(false);
@@ -23,6 +26,8 @@ public class TimeDog : MonoBehaviour {
 
 	public void chamarRelogio(){
 		alerta_panel.SetActive(true);
+		panelAlert.SetActive(true);
+
 		valendo = true;
 		segundos = 29;
 		texttime.SetActive(true);
@@ -56,8 +61,11 @@ public class TimeDog : MonoBehaviour {
 		texttime.SetActive(false);
 		timeAlert.SetActive(false);
 		alerta_panel.SetActive(false);
+		panelAlert.SetActive(false);
+
 		TimeCentral.Instance.alerta = false;
 		TimeCentral.Instance.tcorrido = 1f;
+
 	}
 
 	IEnumerator destroyObj(){
@@ -68,6 +76,8 @@ public class TimeDog : MonoBehaviour {
 		TimeCentral.Instance.alerta = false;
 		texttime.SetActive(false);
 		timeAlert.SetActive(false);
+		panelAlert.SetActive(false);
+
 		valendo = false;
 	}
 }

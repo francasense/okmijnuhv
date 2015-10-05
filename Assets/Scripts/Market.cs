@@ -90,6 +90,8 @@ public class Market : MonoBehaviour {
 			int record = Mathf.Max(Player.Instance.points,PlayerPrefs.GetInt("Record"));
 			PlayerPrefs.SetInt("Record",record);
 			textRecord.text = "Record: "+record;
+			Player.Instance.inicio = 0f;
+
 		}
 				
 

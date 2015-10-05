@@ -13,21 +13,17 @@ public class LevelControl : MonoBehaviour {
 	public TimeDog timeDog;
 	public GameObject ladrao;
 	public GameObject policeCar;
-
-
+	public Character character;
 	private int level = 1;
 	public float dayTime1 = 0f;
 	public float nightTime1 = 0f;
 	public Market market;
 	public int dayday;
-
 	public CartStore cartStore;
-	
 	public float startTimeStep;
 	public float endTimeStep;
 	public float totalTime;
 	public float timeStepVariation;
-	
 	public SpawnHelper spawnHelper;
 	public SpawnMother spawnMother;
 	public SpawnDog spawnDog;
@@ -36,9 +32,7 @@ public class LevelControl : MonoBehaviour {
 	public int qualLevel;
 	public int LifeBar;
 	public int pointsperLevel;
-	// Use this for initialization
 	public int openLevel = 0;
-	
 	public bool level01;
 	public bool level02;
 	public bool level03;
@@ -56,17 +50,11 @@ public class LevelControl : MonoBehaviour {
 	public GameObject neve;
 	public GameObject cachecol;
 	public GameObject carrinhosCena;
-
 	public bool chovendoFase;
 	public bool cachecolFase;
 	public bool primeiroDia;
+	
 
-		
-		
-	
-	
-	//public float dificuldade;
-	
 	void Start(){
 		policeCar.SetActive(false);
 		ladrao.SetActive(false);
@@ -74,11 +62,9 @@ public class LevelControl : MonoBehaviour {
 		neve.SetActive(false);
 		cachecol.SetActive(false);
 		cachecolFase = false;
-
 		chovendoFase = false;
 		chuva.SetActive(false);
 		capa.SetActive(false);
-
 		level01 = true;
 		level02 = true;
 		level03 = true;
@@ -91,12 +77,10 @@ public class LevelControl : MonoBehaviour {
 		level010 = true;
 		level011 = true;
 		level012 = true;
-
 		qualLevel = PlayerPrefs.GetInt("level");
 		
 		sorteio();
 		
-		//Cursor.SetCursor(cursor, new Vector2(32,32), CursorMode.Auto);
 		switch (qualLevel)
 		{
 		case 1:
@@ -106,71 +90,48 @@ public class LevelControl : MonoBehaviour {
 			break;
 		case 2:
 			policeCar.SetActive(true);
-
 			primeiroDia = true;
 			StartCoroutine(Day2());
-			//level02 = false;
 			break;
 		case 3:
 			primeiroDia = true;
-
 			StartCoroutine(Day3());
-
-			//level03 = false;
 			break;
 		case 4:
-			primeiroDia = true;
-			chovendoFase = true;
-			chuva.SetActive(true);
-			capa.SetActive(true);
-			//
-
 			StartCoroutine(Day4());
-
 			break;
 		case 5:
 			policeCar.SetActive(true);
-
 			primeiroDia = true;
 			StartCoroutine(Day5());
 			break;
 		case 6:
 			primeiroDia = true;
-			cachecolFase = true;
-			neve.SetActive(true);
-			cachecol.SetActive(true);
 			StartCoroutine(Day6());
 			break;
 		case 7:
 			primeiroDia = true;
-
 			StartCoroutine(Day7());
 			break;
 		case 8:
 			primeiroDia = true;
-
 			StartCoroutine(Day8());
 			break;
 		case 9:
 			primeiroDia = true;
-
 			StartCoroutine(Day9());
 			break;
 		case 10:
 			policeCar.SetActive(true);
-
 			primeiroDia = true;
-
 			StartCoroutine(Day10());
 			break;
 		case 11:
 			primeiroDia = true;
-
 			StartCoroutine(Day11());
 			break;
 		case 12:
 			primeiroDia = true;
-
 			StartCoroutine(Day12());
 			break;
 		}
@@ -179,15 +140,11 @@ public class LevelControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		
 	}
-	
-	
+
 	IEnumerator Day1() {
 
 		int num_dia = 1;
-		
 		yield return null;
 		LifeBar = 14;//o quanto a barra de life vai andar
 		dayday = 1;//numero do dia
@@ -200,12 +157,11 @@ public class LevelControl : MonoBehaviour {
 		timeStepVariation = 2f; //variaçao para nao parecer exato e ficar um pouco aleatorio
 		market.LevelFinish(120f);//quanto tempo vai durar o dia
 		pointsperLevel = 16;//pontos por level pra poder passar de nivel
-		
+
 		print("Dia 1");
 		if((PlayerPrefs.GetInt("openLevel"))>= 0 && (PlayerPrefs.GetInt("openLevel"))<2){
 			openLevel = num_dia;
 		}
-
 	}
 	
 	IEnumerator Day2() {
@@ -226,10 +182,8 @@ public class LevelControl : MonoBehaviour {
 		if(level02){
 			openLevel = num_dia;
 		}
-		
 		//elementos extras abaixo ###################################################
 		print("Dia 2");
-
 	}
 	
 	IEnumerator Day3() {
@@ -250,15 +204,9 @@ public class LevelControl : MonoBehaviour {
 		if(level03){
 			openLevel = num_dia;
 		}
-		
-		//elementos extras abaixo ###################################################
-		yield return new WaitForSeconds(sorteado);
-		spawnMother.Spawn ();
-		//print("Dia 3");
-		timeMather.chamarRelogio();
-		timeDog.chamarRelogio();
-
-		
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(1));
 	}
 	
 	IEnumerator Day4() {
@@ -278,9 +226,11 @@ public class LevelControl : MonoBehaviour {
 		if(level03){
 			openLevel = num_dia;
 		}
-		
 		//elementos extras abaixo ###################################################
 		print("Dia 4");
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(4));
 	}
 	
 	IEnumerator Day5() {
@@ -300,11 +250,10 @@ public class LevelControl : MonoBehaviour {
 		if(level03){
 			openLevel = num_dia;
 		}
-
 		print("Dia 5");
-
-		yield return new WaitForSeconds(sorteado);
-		ladrao.SetActive(true);
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(2));
 	}
 	
 	IEnumerator Day6() {
@@ -325,6 +274,9 @@ public class LevelControl : MonoBehaviour {
 			openLevel = num_dia;
 		}
 		print("Dia 6");
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(5));
 	}
 	
 	IEnumerator Day7() {
@@ -344,11 +296,11 @@ public class LevelControl : MonoBehaviour {
 		if(level03){
 			openLevel = num_dia;
 		}
-		
 		//elementos extras abaixo ###################################################
 		yield return new WaitForSeconds(sorteado);
-		spawnDog.Spawn ();
-		timeDog.chamarRelogio();
+		// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+		// escolha um dos elementos e passe como parametro a baixo
+		StartCoroutine(instaciarExtras(3));
 	}
 	
 	IEnumerator Day8() {
@@ -450,10 +402,6 @@ public class LevelControl : MonoBehaviour {
 		}
 		print("Dia 12");
 	}
-	
-	
-	
-	
 	void sorteio(){
 		switch (Random.Range(1,6))
 		{
@@ -475,9 +423,46 @@ public class LevelControl : MonoBehaviour {
 		case 6:
 			sorteado = 60f;
 			break;
-			
+		}
+	}
+	// 1(mulher) -  2(ladrao) -  3(cachorro) -  4(chuva) - 5(neve)
+	IEnumerator instaciarExtras(int extra) {
+
+		yield return null;
+		switch (extra)
+		{
+		case 1:
+			//chamar a mulher
+			yield return new WaitForSeconds(sorteado);
+			spawnMother.Spawn ();
+			timeMather.chamarRelogio();
+			timeDog.chamarRelogio();
+			break;
+		case 2:
+			//chamar o ladrao
+			policeCar.SetActive(true);
+			yield return new WaitForSeconds(sorteado);
+			ladrao.SetActive(true);
+			timeDog.chamarRelogio();
+			break;
+		case 3:
+			//chamar o cachorro
+			yield return new WaitForSeconds(sorteado);
+			spawnDog.Spawn ();
+			timeDog.chamarRelogio();
+			break;
+		case 4:
+			//chamar chuva
+			chovendoFase = true;
+			chuva.SetActive(true);
+			capa.SetActive(true);
+			break;
+		case 5:
+			//chamar neve
+			cachecolFase = true;
+			neve.SetActive(true);
+			cachecol.SetActive(true);
+			break;
 		}
 	}
 }
-
-

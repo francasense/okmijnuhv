@@ -4,7 +4,6 @@ using System.Collections;
 public class CartCollect : MonoBehaviour {
 
 	void Start(){
-	
 	}
 
 	void OnTriggerEnter(Collider col){

@@ -4,16 +4,12 @@ using System.Collections;
 public class CartMather : MonoBehaviour {
 	public Mather mather;
 	public GameObject ativar;
+	public Character character;
+
 	
 	void Start () {
-
+		StartCoroutine(retirarCarro());
 	}
-
-	//public void destroi(){
-		//Destroy(gameObject);
-		//ativar.SetActive(false);
-
-//	}
 
 	void OnTriggerEnter(Collider col){
 		if(col.gameObject.CompareTag("Matherbaby")){
@@ -28,6 +24,16 @@ public class CartMather : MonoBehaviour {
 			TimeDog.Instance.valendofalso();
 
 		}
+	}
+
+	IEnumerator retirarCarro(){
+		yield return new WaitForSeconds(26f);
+		Destroy(gameObject);
+
+		Cart.Instance.DetachFrom();
+		GetComponent<Cart> ().colectable = false;
+		character.cart = false;
+		character.walk = false;
 	}
 
 }

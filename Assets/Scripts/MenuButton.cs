@@ -5,7 +5,7 @@ public class MenuButton : MonoBehaviour {
 
 
 	void Start () {
-		PlayerPrefs.SetInt("points", 0);
+		//PlayerPrefs.SetInt("points", 0);
 	}
 	
 	// Update is called once per frame
