@@ -89,7 +89,7 @@ public class LevelControl : MonoBehaviour {
 		switch (qualLevel)
 		{
 		case 1:
-			primeiroDia = false;
+			primeiroDia = true;
 			carrinhosCena.SetActive(true);
 			StartCoroutine(Day1());
 			break;
@@ -103,6 +103,7 @@ public class LevelControl : MonoBehaviour {
 			StartCoroutine(Day3());
 			break;
 		case 4:
+			primeiroDia = true;
 			StartCoroutine(Day4());
 			break;
 		case 5:

@@ -31,7 +31,7 @@ public class Market : MonoBehaviour {
 	public int numLevel = 0;
 
 	void Start () {
-		PlayerPrefs.SetInt("moedas",0);
+		PlayerPrefs.SetInt("moedas",PlayerPrefs.GetInt("valorMoedas"));
 
 		StartCoroutine(CreateCarCoroutine());
 		LevelCompleted = false;
@@ -96,7 +96,7 @@ public class Market : MonoBehaviour {
 				
 
 		if(Player.Instance.points > LevelControl.Instance.pointsperLevel || LevelCompleted){
-			PlayerPrefs.SetInt("moedas",GerenciarExtras.Instance.point);
+			PlayerPrefs.SetInt("moedas", PlayerPrefs.GetInt("valorMoedas"));
 			Debug.Log("moedas");
 			Debug.Log(PlayerPrefs.GetInt("moedas"));
 			//PlayerPrefs.SetInt("openLevel",numLevel);

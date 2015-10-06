@@ -44,13 +44,15 @@ public class GerenciarExtras : MonoBehaviour {
 
 	void loadCoin(){
 
-		if (point == 3){
+		if (point >3){
+			Debug.Log("point inicial"+ point);
+
 			ButtonHelper.SetActive(true);
 			ButtonHelperOFF.SetActive(false);
 			
 		}
 		
-		if (point == 5){
+		if (point >5){
 			ButtonSuperOFF.SetActive(false);
 			botaoSpeed.SetActive(true);
 			
@@ -103,12 +105,12 @@ public class GerenciarExtras : MonoBehaviour {
 		PlayerPrefs.SetInt("valorMoedas",PlayerPrefs.GetInt("moedas"));
 
 
-		if (point == 3){
+		if (point >3){
 			ButtonHelper.SetActive(true);
 			ButtonHelperOFF.SetActive(false);
 		}
 
-		if (point == 5){
+		if (point >5){
 			ButtonSuperOFF.SetActive(false);
 			botaoSpeed.SetActive(true);
 		}
