@@ -52,7 +52,7 @@ public class GerenciarExtras : MonoBehaviour {
 			
 		}
 		
-		if (point >5){
+		if (point >3){
 			ButtonSuperOFF.SetActive(false);
 			botaoSpeed.SetActive(true);
 			
@@ -91,7 +91,7 @@ public class GerenciarExtras : MonoBehaviour {
 			ButtonHelperOFF.SetActive(true);
 		}
 		if (pointsCois == 3){
-			point = point-6;
+			point = point-4;
 			PlayerPrefs.SetInt("moedas",point);
 
 			botaoSpeed.SetActive(false);
@@ -110,7 +110,7 @@ public class GerenciarExtras : MonoBehaviour {
 			ButtonHelperOFF.SetActive(false);
 		}
 
-		if (point >5){
+		if (point >3){
 			ButtonSuperOFF.SetActive(false);
 			botaoSpeed.SetActive(true);
 		}
