@@ -54,6 +54,9 @@ public class Helper : MonoBehaviour, ICartHandler {
 		UpdateDestination();
 		
 		character.cart = currentCart != null;
+
+
+
 	}
 
 	//MOVIMENTAÇAO INDEPENDENTE DE NAVMESH
@@ -63,7 +66,18 @@ public class Helper : MonoBehaviour, ICartHandler {
 		var dirn = dir.normalized;
 		
 		var rb = GetComponent<Rigidbody>();
-		
+
+		RaycastHit hit;
+		Vector3 fwd = transform.TransformDirection(Vector3.forward);
+		//Debug.DrawRay (transform.position, fwd);
+		if (Physics.Raycast(transform.position, fwd,out hit, 2)) {
+			if(hit.transform.gameObject.CompareTag("Vehicle")){
+			this.transform.Translate(Vector3.right * Time.deltaTime * 10);
+			}
+		}
+
+
+
 		if(dir.magnitude > stopDistance){
 			this.character.walk = true;
 			
