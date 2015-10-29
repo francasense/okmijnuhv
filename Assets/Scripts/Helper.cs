@@ -67,6 +67,7 @@ public class Helper : MonoBehaviour, ICartHandler {
 		
 		var rb = GetComponent<Rigidbody>();
 
+		//Verifica se tem obstaculo a frente e empurra ele para o lado caso exista.
 		RaycastHit hit;
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		//Debug.DrawRay (transform.position, fwd);

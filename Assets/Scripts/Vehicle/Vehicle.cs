@@ -10,6 +10,7 @@ public class Vehicle : MonoBehaviour {
 	public State state = State.None;
 
 	public Vaga vaga;
+	public bool roubado = false;
 
 	public AudioClip impact;
 	AudioSource audio;

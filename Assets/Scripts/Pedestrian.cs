@@ -14,6 +14,7 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 
 	public bool chovendo;
 	public bool nevando;
+	public bool roubado;
 
 
 	void Start () {
@@ -21,7 +22,7 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 		cachecol.SetActive(false);
 
 		UpdateDestination();
-		StartCoroutine(CheckDestination());
+		//StartCoroutine(CheckDestination());
 
 		character.walk = true;
 		character.cart = false;
@@ -36,25 +37,32 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 	}
 
 	void UpdateDestination(){
-		if(cart == null){
+		if (cart == null) {
 			//vai pro mercado
-			this.GetComponent<NavMeshAgent>().destination = Game.Instance.market.position + Game.Instance.market.right * Random.Range(-5f,5f);
-		}else{
+			this.GetComponent<NavMeshAgent> ().destination = Game.Instance.market.position + Game.Instance.market.right * Random.Range (-5f, 5f);
+		} else if (roubado == false) {
 			//vai pro carro
-			this.GetComponent<NavMeshAgent>().destination = vehicle.transform.position - vehicle.transform.forward;
+			this.GetComponent<NavMeshAgent> ().destination = vehicle.transform.position - vehicle.transform.forward;
+		} else {
+			this.GetComponent<NavMeshAgent> ().destination = Game.Instance.market.position + Game.Instance.market.right * Random.Range (-5f, 5f);
 		}
 	}
 
 	
 
-	IEnumerator CheckDestination(){
-		while(true){
-			yield return new WaitForEndOfFrame();
+	void FixedUpdate(){
+		//while(true){
+		//	yield return new WaitForEndOfFrame();
 			
 			var agent = this.GetComponent<NavMeshAgent>();
-
-			if(agent.hasPath && agent.remainingDistance < 2f){
-				if(cart == null){
+			if (this.vehicle.roubado) {
+			roubado = true;
+			} else {
+			roubado = false;
+			}
+			
+			//if(agent.hasPath && agent.remainingDistance < 2f){
+			if(Vector3.Distance(this.transform.position, Game.Instance.market.position) < 2f && cart == null){
 					//chegou no mercado
 					//Debug.Log("chegou no mercado");
 					var pos = this.transform.position + this.transform.forward;
@@ -67,7 +75,8 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 					//this.GetComponent<NavMeshAgent>().radius = 1.5f;
 					//this.GetComponent<NavMeshAgent>().ResetPath();
 					cart.GetComponent<NavMeshObstacle>().enabled = false;
-				}else{
+
+			}else if(Vector3.Distance(this.transform.position, vehicle.transform.position) < 2f && cart != null){
 					//chegou no carro de volta
 					vehicle.ChangeToExit();
 					cart.DetachFrom();
@@ -76,13 +85,13 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 					//Destroy(cart.gameObject);
 					Destroy(this.gameObject);
 				}
-				yield return new WaitForEndOfFrame();
+				//yield return new WaitForEndOfFrame();
 				UpdateDestination();
-				yield return new WaitForEndOfFrame();
-			}
+				//yield return new WaitForEndOfFrame();
+			//}
 
-			yield return new WaitForEndOfFrame();
-		}
+			//yield return new WaitForEndOfFrame();
+		//}
 	}
 
 	IEnumerator VerificarChuva(){
@@ -101,4 +110,6 @@ public class Pedestrian : MonoBehaviour, ICartHandler {
 			cachecol.SetActive(false);
 		}
 	}
+	
+
 }
