@@ -169,6 +169,7 @@ public class LevelControl : MonoBehaviour
         market.LevelFinish((120f) * timeDecorrente);//quanto tempo vai durar o dia
         pointsperLevel = 8;//pontos por level pra poder passar de nivel
         print("Dia 1");
+
         if ((PlayerPrefs.GetInt("openLevel")) >= 0 && (PlayerPrefs.GetInt("openLevel")) < 2)
         {
             openLevel = num_dia;

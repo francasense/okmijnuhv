@@ -158,6 +158,10 @@ public class Thief : MonoBehaviour, ICartHandler {
 			TimeDog.Instance.valendofalso();
 
 		}
+		if (col.gameObject.name == "Vehicle") {
+			col.gameObject.GetComponent<Vehicle>().roubado = true;
+			
+		}
 	}
 	IEnumerator destroiComotempo(){
 		yield return new WaitForSeconds(30f);
